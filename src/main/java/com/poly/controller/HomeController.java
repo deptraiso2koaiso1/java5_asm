@@ -26,10 +26,8 @@ public class HomeController {
 
 	@RequestMapping("/user/shop")
 	public String shop(@ModelAttribute("p") Products p, Model model) {
-
 		model.addAttribute("items", dao.findAll());
 		return "/user/shop";
-
 	}
 
 	@GetMapping("/user/contact")
