@@ -9,6 +9,7 @@ public class CartController {
 	public String index() {
 		return "user/cart";
 	}
+
 	@GetMapping("/user/cart/checkout")
 	public String checkout() {
 		return "user/checkout";
