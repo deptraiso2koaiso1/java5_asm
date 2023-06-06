@@ -1,11 +1,9 @@
-package com.poly.Entity;
+package com.poly.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,26 +14,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class OrderDetails {
+public class Customers {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@ManyToOne
-	@JoinColumn(name = "Order_Id")
-	private Orders order;
-
-	@ManyToOne
-	@JoinColumn(name = "Product_Id")
-	private Products product;
-
-	private Integer quantity;
+	private String name;
 
 	private String address;
 
-	private Double amount;
+	private String phone;
 
-	private String paymentMethod;
+	private String email;
 
 }

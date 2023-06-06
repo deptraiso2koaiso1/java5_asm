@@ -1,4 +1,4 @@
-package com.poly.Entity;
+package com.poly.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,24 +13,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
-public class Users {
-
+@Table(name = "Categories")
+public class Categories {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private String name;
 
-	private String address;
+	private String description;
 
-	private String phone;
-
-	private String email;
-
-	private String username;
-
-	private String password;
-
-	private Boolean isAdmin;
 }

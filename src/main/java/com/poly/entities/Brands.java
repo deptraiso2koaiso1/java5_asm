@@ -1,4 +1,4 @@
-package com.poly.Entity;
+package com.poly.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
+@Table(name = "Brands")
 public class Brands {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
