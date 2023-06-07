@@ -18,7 +18,7 @@
 <style>
 .form {
 	display: flex;
-	justify-content: center;
+	margin: 0 30px 0 0;
 }
 
 </style>
@@ -30,7 +30,7 @@
 			<div class="row">
 				<div class="col-sm-12 form">
 					<c:forEach var="item" items="${items}">
-						<div class="card" style="width: 18rem;">
+						<div class="card" style="width: 20rem;">
 							<img src="${item.image}" class="card-img-top">
 							<div class="card-body">
 								<h5 class="card-title">${item.name}</h5>
