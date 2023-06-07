@@ -9,7 +9,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <%@ include file="/WEB-INF/views/commons/head.jsp"%>
-<<<<<<< HEAD
 <style>
 .form {
 	display: flex;
@@ -17,30 +16,10 @@
 }
 
 </style>
-=======
->>>>>>> 7875dae7eaa06bf8a91034622526b8af637508f8
 </head>
 <body>
-
 	<div class="site-wrap">
-
 		<%@ include file="/WEB-INF/views/commons/header.jsp"%>
-<<<<<<< HEAD
-		<div class="container" style="margin-top: 10px;">
-			<div class="row">
-				<div class="col-sm-12 form">
-					<c:forEach var="item" items="${items}">
-						<div class="card" style="width: 20rem;">
-							<img src="${item.image}" class="card-img-top">
-							<div class="card-body">
-								<h5 class="card-title">${item.name}</h5>
-								<p class="card-text">${item.description}</p>
-								<span class="badge bg-info badge-lg">$ ${item.price}</span>
-								<a href="#" class="btn btn-primary">Add to cart</a>
-							</div>
-						</div>
-					</c:forEach>
-=======
 		<div class="bg-light py-3">
 			<div class="container">
 				<div class="row">
@@ -48,7 +27,6 @@
 						<a href="/home">Home</a> <span class="mx-2 mb-0">/</span> <strong
 							class="text-black">Shop</strong>
 					</div>
->>>>>>> 7875dae7eaa06bf8a91034622526b8af637508f8
 				</div>
 			</div>
 		</div>
@@ -247,7 +225,6 @@
 				</div>
 			</div>
 		</div>
-
 		<%@ include file="/WEB-INF/views/commons/footer.jsp"%>
 	</div>
 
