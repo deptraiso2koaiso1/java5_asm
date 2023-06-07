@@ -1,20 +1,29 @@
 package com.poly.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.poly.entities.Products;
 import com.poly.repositories.ProductsDAO;
-import com.poly.service.ProductService;
+
 
 @Controller
 public class HomeController {
-
+	@Autowired
+	ProductsDAO productDao;
 	
 	
 	@GetMapping("/home")
-	public String home() {
+	public String home(Model model) {
+
+        // Lấy danh sách top 5 sản phẩm theo giá
+	    	List<Products> products = productDao.findAll(Sort.by(Sort.Direction.DESC, "price")).subList(0, 5);
+	        model.addAttribute("products", products);
 		return "user/home";
 	}
 //	@GetMapping("/user/about")

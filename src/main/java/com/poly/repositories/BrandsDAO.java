@@ -6,10 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import com.poly.entities.Brands;
 
-
-
-
-
 @EnableJpaRepositories
 @Repository
 public interface BrandsDAO extends JpaRepository<Brands, Integer> {
