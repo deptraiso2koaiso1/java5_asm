@@ -1,4 +1,4 @@
-package com.poly.Entity;
+package com.poly.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,25 +16,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class Products {
+public class OrderDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private String name;
-
-	private String image;
-
-	private String description;
-
-	private Double price;
+	@ManyToOne
+	@JoinColumn(name = "Order_Id")
+	private Orders order;
 
 	@ManyToOne
-	@JoinColumn(name = "Brand_Id")
-	private Brands brand;
+	@JoinColumn(name = "Product_Id")
+	private Products product;
 
-	@ManyToOne
-	@JoinColumn(name = "Category_Id")
-	private Categories category;
+	private Integer quantity;
+
+	private String address;
+
+	private Double amount;
+
+	private String paymentMethod;
+
 }
