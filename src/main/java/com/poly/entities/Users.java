@@ -1,5 +1,6 @@
 package com.poly.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
+@Table(name = "Users")
 public class Users {
 
 	@Id
@@ -32,5 +33,5 @@ public class Users {
 
 	private String password;
 
-	private Boolean isAdmin;
+	private Boolean is_admin;
 }

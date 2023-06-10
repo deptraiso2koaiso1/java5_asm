@@ -4,10 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
-import com.poly.entities.Products;
+import com.poly.entities.Orders;
+
 
 @EnableJpaRepositories
 @Repository
-public interface OrdersDAO extends JpaRepository<Products, Integer> {
+public interface OrdersDAO extends JpaRepository<Orders, Integer> {
 
 }
