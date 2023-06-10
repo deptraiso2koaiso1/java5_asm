@@ -10,20 +10,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.poly.entities.Products;
 import com.poly.repositories.ProductsDAO;
-
+import com.poly.service.CartService;
 
 @Controller
 public class HomeController {
 	@Autowired
 	ProductsDAO productDao;
-	
-	
+	@Autowired
+	CartService cartService;
+
 	@GetMapping("/home")
 	public String home(Model model) {
 
-        // Lấy danh sách top 5 sản phẩm theo giá
-	    	List<Products> products = productDao.findAll(Sort.by(Sort.Direction.DESC, "price")).subList(0, 5);
-	        model.addAttribute("products", products);
+		// Lấy danh sách top 5 sản phẩm theo giá
+		List<Products> products = productDao.findAll(Sort.by(Sort.Direction.DESC, "price")).subList(0, 5);
+		model.addAttribute("products", products);
+		// Hiển thị số sản phẩm ở giỏ hàng
+		model.addAttribute("count", cartService.getCount());
 		return "user/home";
 	}
 //	@GetMapping("/user/about")
@@ -44,6 +47,5 @@ public class HomeController {
 //	public String thankyou(){
 //		return "user/thankyou";
 //	}
-	
-	
+
 }

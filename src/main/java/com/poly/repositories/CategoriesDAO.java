@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import com.poly.entities.Categories;
 
-
 @EnableJpaRepositories
 @Repository
 public interface CategoriesDAO extends JpaRepository<Categories, Integer> {

@@ -14,7 +14,6 @@
 	display: flex;
 	margin: 0 30px 0 0;
 }
-
 </style>
 </head>
 <body>
@@ -30,7 +29,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="site-section">
 			<div class="container">
 
@@ -50,14 +48,10 @@
 											aria-haspopup="true" aria-expanded="false">Category</button>
 										<div class="dropdown-menu"
 											aria-labelledby="dropdownMenuOffset">
-											<a class="dropdown-item" href="/user/shop">Tất cả sản phẩm</a>
-											<c:forEach var="category" items="${categories}">
-												
-												<a class="dropdown-item"
-													href="/user/shop/products?category=${category.id}">${category.name }</a>
-
-											</c:forEach>
-
+											<a class="dropdown-item" href="/shop">Tất cả sản phẩm</a> <a
+												class="dropdown-item" href="/shop/cate1">Clothing</a> <a
+												class="dropdown-item" href="/shop/cate2">Footwear</a> <a
+												class="dropdown-item" href="/shop/cate3">Accessories</a>
 										</div>
 									</div>
 									<div class="btn-group">
@@ -66,12 +60,16 @@
 											id="dropdownMenuReference" data-toggle="dropdown">Reference</button>
 										<div class="dropdown-menu"
 											aria-labelledby="dropdownMenuReference">
-											<a class="dropdown-item" href="#">Relevance</a> <a
-												class="dropdown-item" href="#">Name, A to Z</a> <a
-												class="dropdown-item" href="#">Name, Z to A</a>
+											<a class="dropdown-item"
+												href="<c:url value="/shop/sortAtoZ" />">Name, A to Z</a> <a
+												class="dropdown-item"
+												href="<c:url value="/shop/sortZtoA" />">Name, Z to A</a>
 											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="#">Price, low to high</a> <a
-												class="dropdown-item" href="#">Price, high to low</a>
+											<a class="dropdown-item"
+												href="<c:url value="/shop/sortAsc" />"> Price, low to
+												high</a> <a class="dropdown-item"
+												href="<c:url value="/shop/sortDesc" />"> Price, high to
+												low</a>
 										</div>
 									</div>
 								</div>
@@ -82,13 +80,15 @@
 								<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
 									<div class="block-4 text-center border">
 										<figure class="block-4-image">
-											<a href="${pageContext.request.contextPath}/user/shop/detail/${product.id}"><img
-												src="${product.image }" alt="${product.name}"
+											<a
+												href="${pageContext.request.contextPath}/shop/detail/${product.id}"><img
+												src="${product.image}" alt="${product.name}"
 												class="img-fluid"></a>
 										</figure>
 										<div class="block-4-text p-4">
 											<h3>
-												<a href="${pageContext.request.contextPath}/user/shop/detail/${product.id}">${product.name}</a>
+												<a
+													href="${pageContext.request.contextPath}/shop/detail/${product.id}">${product.name}</a>
 											</h3>
 											<p
 												style="height: 100px; overflow: hidden; text-overflow: ellipsis;"
@@ -99,18 +99,13 @@
 								</div>
 							</c:forEach>
 						</div>
+
 						<div class="row" data-aos="fade-up">
 							<div class="col-md-12 text-center">
 								<div class="site-block-27">
-									<ul>
-										<li><a href="#">&lt;</a></li>
-										<li class="active"><span>1</span></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#">4</a></li>
-										<li><a href="#">5</a></li>
-										<li><a href="#">&gt;</a></li>
-									</ul>
+									<div>
+										<!-- phân trang -->
+									</div>
 								</div>
 							</div>
 						</div>
@@ -125,6 +120,13 @@
 											<span class="text-black ml-auto">${brand.origin}</span></a></li>
 								</c:forEach>
 							</ul>
+						</div>
+						<div class="border p-4 rounded mb-4">
+							<form action="" class="site-block-top-search">
+								<span class="icon icon-search2"></span> <input type="text"
+									name="search" class="form-control border-0"
+									placeholder="Search">
+							</form>
 						</div>
 
 						<div class="border p-4 rounded mb-4">
