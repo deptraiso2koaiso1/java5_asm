@@ -44,60 +44,63 @@
 									<div class="dropdown mr-1 ml-md-auto">
 										<button type="button"
 											class="btn btn-secondary btn-sm dropdown-toggle"
-											id="dropdownMenuOffset" data-toggle="dropdown"
+											id="dropdownCategory" data-toggle="dropdown"
 											aria-haspopup="true" aria-expanded="false">Category</button>
-										<div class="dropdown-menu"
-											aria-labelledby="dropdownMenuOffset">
-											<a class="dropdown-item" href="/shop">Tất cả sản phẩm</a> <a
-												class="dropdown-item" href="/shop/cate1">Clothing</a> <a
-												class="dropdown-item" href="/shop/cate2">Footwear</a> <a
-												class="dropdown-item" href="/shop/cate3">Accessories</a>
+										<div class="dropdown-menu" aria-labelledby="dropdownCategory">
+											<a class="dropdown-item" href="/shop">All Products</a> <a
+												class="dropdown-item" href="#">Clothing</a> <a
+												class="dropdown-item" href="#">Footwear</a> <a
+												class="dropdown-item" href="#">Accessories</a>
 										</div>
 									</div>
 									<div class="btn-group">
 										<button type="button"
 											class="btn btn-secondary btn-sm dropdown-toggle"
-											id="dropdownMenuReference" data-toggle="dropdown">Reference</button>
-										<div class="dropdown-menu"
-											aria-labelledby="dropdownMenuReference">
+											id="dropdownSort" data-toggle="dropdown">Sort By</button>
+										<div class="dropdown-menu" aria-labelledby="dropdownSort">
 											<a class="dropdown-item"
-												href="<c:url value="/shop/sortAtoZ" />">Name, A to Z</a> <a
-												class="dropdown-item"
-												href="<c:url value="/shop/sortZtoA" />">Name, Z to A</a>
+												href="/shop?page=0&size=6&sortType=price&sortDir=asc">Sắp
+												xếp theo giá (tăng dần)</a> <a class="dropdown-item"
+												href="/shop?page=0&size=6&sortType=price&sortDir=desc">Sắp
+												xếp theo giá (giảm dần)</a>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item"
-												href="<c:url value="/shop/sortAsc" />"> Price, low to
-												high</a> <a class="dropdown-item"
-												href="<c:url value="/shop/sortDesc" />"> Price, high to
-												low</a>
+												href="/shop?page=0&size=6&sortType=name&sortDir=asc">Sắp
+												xếp theo tên (A-Z)</a> <a class="dropdown-item"
+												href="/shop?page=0&size=6&sortType=name&sortDir=desc">Sắp
+												xếp theo tên (Z-A)</a>
 										</div>
 									</div>
+
 								</div>
+
+
+
 							</div>
 						</div>
 						<div class="row mb-5">
-							<c:forEach var="product" items="${products}">
+							<c:forEach var="product" items="${products.content}">
 								<div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
 									<div class="block-4 text-center border">
 										<figure class="block-4-image">
 											<a
-												href="${pageContext.request.contextPath}/shop/detail/${product.id}"><img
-												src="${product.image}" alt="${product.name}"
-												class="img-fluid"></a>
+												href="${pageContext.request.contextPath}/shop/detail/${product.id}">
+												<img src="${product.image}" alt="${product.name}"
+												class="img-fluid product-image">
+											</a>
+											<div class="price">${product.price}</div>
 										</figure>
 										<div class="block-4-text p-4">
 											<h3>
 												<a
 													href="${pageContext.request.contextPath}/shop/detail/${product.id}">${product.name}</a>
 											</h3>
-											<p
-												style="height: 100px; overflow: hidden; text-overflow: ellipsis;"
-												class="mb-0">${product.description}</p>
-											<p class="text-primary font-weight-bold">${product.price}</p>
+											<p class="description">${product.description}</p>
 										</div>
 									</div>
 								</div>
 							</c:forEach>
+
 						</div>
 
 						<div class="row" data-aos="fade-up">
@@ -105,6 +108,17 @@
 								<div class="site-block-27">
 									<div>
 										<!-- phân trang -->
+										<div class="row mt-5">
+											<ul class="pagination justify-content-center">
+												<c:forEach var="index" begin="0"
+													end="${ products.totalPages - 1 }">
+													<li class="page-item mx-1"><a
+														class="page-link ${ index==page?'bg-black text-white':'' }"
+														href="/shop?page=${ index }">${ index + 1 }</a></li>
+												</c:forEach>
+											</ul>
+										</div>
+
 									</div>
 								</div>
 							</div>

@@ -17,7 +17,8 @@ import com.poly.repositories.ProductsDAO;
 public class CartServiceImpl implements CartService {
 	@Autowired
 	ProductsDAO dao;
-
+@Autowired
+SessionService session;
 	HashMap<Integer, CartItem> maps = new HashMap<>();
 
 	@Override
@@ -47,22 +48,23 @@ public class CartServiceImpl implements CartService {
 		}
 		return maps;
 	}
-
-	@Override
-	public HashMap<Integer, CartItem> editProduct(int id, int quantity) {
-		if (maps == null) {
-			return maps;
-		}
-		CartItem cartItem = new CartItem();
-		if (maps.containsKey(id)) {
-			cartItem = maps.get(id);
-			cartItem.setQuantity(quantity);
-			double totalPrice = quantity * cartItem.getProduct().getPrice();
-			cartItem.setTotalPrice(totalPrice);
-		}
-		return maps;
-
-	}
+	private HashMap<Integer, CartItem> getCartItems() {
+        HashMap<Integer, CartItem> cartItems = (HashMap<Integer, CartItem>) session.get("cart");
+        if (cartItems == null) {
+            cartItems = new HashMap<Integer, CartItem>();
+        }
+        return cartItems;
+    }
+	 @Override
+	    public HashMap<Integer, CartItem> editProduct(int id, int quantity) {
+	        HashMap<Integer, CartItem> cartItems = getCartItems();
+	        CartItem cartItem = cartItems.get(id);
+	        if (cartItem != null) {
+	            cartItem.setQuantity(quantity);
+	            cartItem.setTotalPrice(cartItem.getPrice() * quantity);
+	        }
+	        return cartItems;
+	    }
 
 	@Override
 	public void clear() {
@@ -84,14 +86,23 @@ public class CartServiceImpl implements CartService {
 		return totalQuantity;
 	}
 
+//	@Override
+//	public double getTotalPrice() {
+//		int totalPrice = 0;
+//		for (Map.Entry<Integer, CartItem> cartItem : maps.entrySet()) {
+//			totalPrice += cartItem.getValue().getTotalPrice();
+//		}
+////		return maps.values().size();
+//		return totalPrice;
+//	}
 	@Override
 	public double getTotalPrice() {
-		int totalPrice = 0;
-		for (Map.Entry<Integer, CartItem> cartItem : maps.entrySet()) {
-			totalPrice += cartItem.getValue().getTotalPrice();
-		}
-//		return maps.values().size();
-		return totalPrice;
+	    double totalPrice = 0;
+	    for (Map.Entry<Integer, CartItem> cartItem : maps.entrySet()) {
+	        totalPrice += cartItem.getValue().getPrice() * cartItem.getValue().getQuantity();
+	    }
+	    return totalPrice;
 	}
+
 
 }
