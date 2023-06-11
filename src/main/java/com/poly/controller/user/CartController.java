@@ -50,32 +50,48 @@ public class CartController {
 //		session.set("totalPrice", amount);
 		return "user/cart";
 	}
-
 	@RequestMapping("/add/{id}")
 	public String add(@PathVariable int id, Model model) {
-		HashMap<Integer, CartItem> maps = (HashMap<Integer, CartItem>) session.get("cart");
-		if (maps == null) {
-			maps = new HashMap<Integer, CartItem>();
-		}
-		maps = cart.addProduct(id);
-		session.set("cart", maps);
-		session.set("totalQuantity", cart.getCount());
-		session.set("totalPrice", cart.getTotalPrice());
-		return "redirect:" + request.getHeader("Referer");
+	    HashMap<Integer, CartItem> maps = (HashMap<Integer, CartItem>) session.get("cart");
+	    if (maps == null) {
+	        maps = new HashMap<Integer, CartItem>();
+	    }
+	    maps = cart.addProduct(id);
+	    session.set("cart", maps);
+	    session.set("totalPrice", cart.getTotalPrice());
+	    session.set("totalQuantity", cart.getCount());
+
+	    CartItem item = maps.get(id);
+	    model.addAttribute("item", item);
+	    return "redirect:" + request.getHeader("Referer");
 	}
 
-	@RequestMapping("/update/{id}")
-	public String update(@PathVariable int id, Model model) {
-		HashMap<Integer, CartItem> maps = (HashMap<Integer, CartItem>) session.get("cart");
-		if (maps == null) {
-			maps = new HashMap<Integer, CartItem>();
-		}
-		maps = cart.editProduct(id, param.getInt("quantity", 0));
-		session.set("cart", maps);
-		session.set("totalQuantity", cart.getCount());
-		session.set("totalPrice", cart.getTotalPrice());
-		return "user/cart";
-	}
+
+//	@RequestMapping("/add/{id}")
+//	public String add(@PathVariable int id, Model model) {
+//		HashMap<Integer, CartItem> maps = (HashMap<Integer, CartItem>) session.get("cart");
+//		if (maps == null) {
+//			maps = new HashMap<Integer, CartItem>();
+//		}
+//		maps = cart.addProduct(id);
+//		session.set("cart", maps);
+//		session.set("totalQuantity", cart.getCount());
+//		session.set("totalPrice", cart.getTotalPrice());
+//		return "redirect:" + request.getHeader("Referer");
+//	}
+
+//	@RequestMapping("/update/{id}")
+//	public String update(@PathVariable int id, Model model) {
+//		HashMap<Integer, CartItem> maps = (HashMap<Integer, CartItem>) session.get("cart");
+//		if (maps == null) {
+//			maps = new HashMap<Integer, CartItem>();
+//		}
+//		maps = cart.editProduct(id, param.getInt("quantity", 0));
+//		session.set("cart", maps);
+//		session.set("totalQuantity", cart.getCount());
+//		session.set("totalPrice", cart.getTotalPrice());
+//		return "user/cart";
+//	}
 
 	@RequestMapping("/remove/{id}")
 	public String remove(@PathVariable int id, Model model) {
