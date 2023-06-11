@@ -14,7 +14,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 
-<title>Bee Shop Admin</title>
+<title> Admin Management</title>
 </head>
 <body>
 	<div class="container-fluid">
@@ -24,30 +24,19 @@
 				<nav class="navbar navbar-expand-lg shadow-sm"
 					style="background-color: #ffffff">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="#">Navbar w/ text</a>
-						<button class="navbar-toggler" type="button"
-							data-bs-toggle="collapse" data-bs-target="#navbarText"
-							aria-controls="navbarText" aria-expanded="false"
-							aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
+						<button class="navbar-toggler" type="button">
+							
 						</button>
 						<div class="collapse navbar-collapse" id="navbarText">
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/home">Home</a></li>
-								<li class="nav-item"><a class="nav-link" href="#">Features</a>
-								</li>
-								<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
-								</li>
 							</ul>
-							<span class="navbar-text" id="dropAccount" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false"> <sec:authorize
-									access="isAuthenticated()">
-									<span> Welcome <sec:authentication
-											property="principal.username" />
+							 <span class="navbar-text" id="dropAccount" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false">
+								 <sec:authorize access="isAuthenticated()">
+									<span> Welcome, ${user.name}!
 									</span>
 								</sec:authorize> <i class="fa-solid fa-user fs-4"></i>
-							</span>
+							</span> 
 							<ul class="dropdown-menu" aria-labelledby="dropAccount"
 								style="left: auto; right: 10px">
 								<li><a class="dropdown-item" href="/home">Home</a></li>
