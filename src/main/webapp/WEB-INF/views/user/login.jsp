@@ -24,8 +24,6 @@
 	<div class="col-md-6 col-lg-4 offset-lg-4 offset-md-3 mt-5">
 		<div class="bg-light p-5 border shadow">
 			<!-- Login Form -->
-			<form method="post" action="/login">
-			<p class="text-danger">${message}</p>
 			<form action="/login" method="post">
 				<h1 class="text-center">Welcome</h1>
 				<p class="text-danger text-center">${message}</p>
@@ -38,7 +36,9 @@
 						class="form-control" placeholder="Password">
 				</div>
 				<div class="mb-4 form-check w-100" style="display: flex">
-						<input type="checkbox" value="${remember}" name="remember"/>
+					<label style="display: inline-block;" class="form-check-label"> <input name="remember" type="checkbox"
+						class="form-check-input"> Remember Me
+					</label> 
 				</div>
 				<button type="submit" class="btn btn-primary w-100 my-3 shadow">Login</button>
 
@@ -46,7 +46,6 @@
 			<p class="text-center m-0">
 				Haven't an account? <a href="/signup"> Sign up!</a>
 			</p>
-				</form>
 		</div>
 	</div>
 	<br>

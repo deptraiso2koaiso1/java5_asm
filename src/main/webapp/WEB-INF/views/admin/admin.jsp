@@ -28,7 +28,14 @@
 						<div class="collapse navbar-collapse" id="navbarText">
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 							</ul>
-							<span> Welcome, ${user.name}! </span>
+							<span class="navbar-text" id="dropAccount" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false"> <sec:authorize
+									access="isAuthenticated()">
+									<span> Welcome, ${user.name}! <sec:authentication
+											property="principal.username" />
+									</span>
+								</sec:authorize> <i class="fa-solid fa-user fs-4"></i>
+							</span>
 							<ul class="dropdown-menu" aria-labelledby="dropAccount"
 								style="left: auto; right: 10px">
 								<li><a class="dropdown-item" href="/home">Home</a></li>
