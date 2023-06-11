@@ -1,7 +1,7 @@
 package com.poly.interceptor;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.poly.entities.Users;
@@ -10,7 +10,7 @@ import com.poly.service.SessionService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@Component
+@Service
 public class AuthInterceptor implements HandlerInterceptor {
 	@Autowired
 	SessionService session;

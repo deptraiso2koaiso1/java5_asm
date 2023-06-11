@@ -39,10 +39,10 @@ public class LoginController {
 
 	@GetMapping("/login")
 	public String index(Model model) {
-		String username = cookieService.getValue("username");
-		String password = cookieService.getValue("password");
-		request.setAttribute("username", username);
-		request.setAttribute("password", password);
+		String un = cookieService.getValue("username");
+		String pw = cookieService.getValue("password");
+		model.addAttribute("username", un);
+		model.addAttribute("password", pw);
 		return "user/login";
 	}
 
@@ -83,19 +83,19 @@ public class LoginController {
 	}
 
 	@RequestMapping("/logout")
-	public String logout() {
+	public String logout(Model model) {
 		sessionService.remove("user");
 		return "user/login";
 	}
 
 	@GetMapping("/signup")
-	public String showForm(Model model) {
+	public String signup(Model model) {
 		model.addAttribute("user", new Users());
 		return "user/signup";
 	}
 
 	@PostMapping("/signup")
-	public String signup(Model model, @ModelAttribute("user") @Validated Users user, BindingResult result,
+	public String signup2(@ModelAttribute("user") @Validated Users user, BindingResult result, Model model,
 			@RequestParam("confirm") String confirm) {
 		if (result.hasErrors()) {
 			model.addAttribute("message", "Please complete form!");
@@ -121,5 +121,4 @@ public class LoginController {
 		}
 		return "user/signup";
 	}
-
 }

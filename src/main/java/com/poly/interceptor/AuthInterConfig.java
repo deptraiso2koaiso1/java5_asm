@@ -16,5 +16,4 @@ public class AuthInterConfig implements WebMvcConfigurer {
 		registry.addInterceptor(authInterceptor).addPathPatterns("/admin/**").excludePathPatterns("/login");
 
 	}
-
 }

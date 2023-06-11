@@ -14,7 +14,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 
-<title> Admin Management</title>
+<title>Admin Management</title>
 </head>
 <body>
 	<div class="container-fluid">
@@ -24,19 +24,11 @@
 				<nav class="navbar navbar-expand-lg shadow-sm"
 					style="background-color: #ffffff">
 					<div class="container-fluid">
-						<button class="navbar-toggler" type="button">
-							
-						</button>
+						<button class="navbar-toggler" type="button"></button>
 						<div class="collapse navbar-collapse" id="navbarText">
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 							</ul>
-							 <span class="navbar-text" id="dropAccount" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false">
-								 <sec:authorize access="isAuthenticated()">
-									<span> Welcome, ${user.name}!
-									</span>
-								</sec:authorize> <i class="fa-solid fa-user fs-4"></i>
-							</span> 
+							<span> Welcome, ${user.name}! </span>
 							<ul class="dropdown-menu" aria-labelledby="dropAccount"
 								style="left: auto; right: 10px">
 								<li><a class="dropdown-item" href="/home">Home</a></li>
