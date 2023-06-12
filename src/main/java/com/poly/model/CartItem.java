@@ -13,4 +13,8 @@ public class CartItem {
 	private Products product;
 	private Integer quantity;
 	private Double totalPrice;
+	
+	public Double getPrice() {
+        return this.product.getPrice();
+    }
 }
