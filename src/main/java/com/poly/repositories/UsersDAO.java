@@ -10,4 +10,6 @@ import com.poly.entities.Users;
 @Repository
 public interface UsersDAO extends JpaRepository<Users, Integer> {
 	Users findByUsername(String username);
+
+	Users findByEmail(String email);
 }

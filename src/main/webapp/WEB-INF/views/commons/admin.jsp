@@ -6,7 +6,7 @@
 				</div>
 				<hr>
 				<div class="list-group">
-					<p class="text-secondary fw-bold">Components</p>
+					<p class="text-secondary fw-bold">Statistics</p>
 					<a href="/admin" class="list-group-item list-group-item-action border-0"
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-gauge-high fs-6 px-1"></i></span> Dash board
@@ -36,7 +36,20 @@
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-calendar-check fs-6 px-1"></i></span> Order details
 					</a>
+<<<<<<< HEAD
 					
 					
+=======
+					<p class="text-secondary fw-bold">Options</p>
+					<a href="#"
+						class="list-group-item list-group-item-action border-0 "
+						style="background-color: #0a3d62; color: #dcdde1"> <span><i
+							class="fa-solid fa-message fs-6 px-1"></i></span> Feedbacks
+					</a> <a href="#"
+						class="list-group-item list-group-item-action border-0 "
+						style="background-color: #0a3d62; color: #dcdde1"> <span><i
+							class="fa-solid fa-gear fs-6 px-1"></i></span> Settings
+					</a>
+>>>>>>> 484079f24053522728b8379cba22cdc4e630e03a
 				</div>
 			</div>
