@@ -12,12 +12,16 @@
 								<div class="item">
 									<div class="block-4 text-center">
 										<figure class="block-4-image">
-											<img src="${product.image}" alt="${product.name}"
-												class="img-fluid">
+											<a
+												href="${pageContext.request.contextPath}/shop/detail/${product.id}">
+												<img src="${product.image}" alt="${product.name}"
+												class="img-fluid product-image">
+											</a>
 										</figure>
 										<div class="block-4-text p-4">
 											<h3>
-												<a href="#">${product.name}</a>
+												<a
+													href="${pageContext.request.contextPath}/shop/detail/${product.id}">${product.name}</a>
 											</h3>
 											<p class="mb-0">${product.description }</p>
 											<p class="text-primary font-weight-bold">${product.price}</p>

@@ -29,9 +29,9 @@ public class HomeController {
 		model.addAttribute("count", cartService.getCount());
 		return "user/home";
 	}
-//	@GetMapping("/user/about")
-//	public void about() {
-//	}
+	@GetMapping("/user/about")
+	public void about() {
+	}
 //	@RequestMapping("/user/shop")
 //	public void shop() {
 //	}

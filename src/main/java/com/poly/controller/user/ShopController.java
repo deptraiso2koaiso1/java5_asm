@@ -45,25 +45,17 @@ public class ShopController {
 	@Autowired
 	private BrandsDAO brandDao;
 
-//	@RequestMapping("/products")
-//	public String getShopPage(@RequestParam(name = "category", required = false) Integer categoryId, Model model) {
-//		List<Products> products;
-//		if (categoryId == null) {
-//			products = productDao.findAll();
-//		} else {
-//			products = productDao.findByCategoryId(categoryId);
-//			// Lấy danh sách danh mục
-//			List<Categories> categories = categoryDao.findAll();
-//			model.addAttribute("categories", categories);
-//
-//			// Lấy danh sách thương hiệu
-//			List<Brands> brands = brandDao.findAll();
-//			model.addAttribute("brands", brands);
-//
-//		}
-//		model.addAttribute("products", products);
-//		return "user/shop";
-//	}
+	@RequestMapping("/products")
+	public String getShopPage(@RequestParam(name = "category", required = false) Integer categoryId, Model model) {
+		List<Products> products;
+		if (categoryId == null) {
+			products = productDao.findAll();
+		} else {
+			products = productDao.findByCategoryId(categoryId);
+		}
+		model.addAttribute("products", products);
+		return "user/shop";
+	}
 
 	@RequestMapping(value = "/detail/{productId}")
 	public String productDetail(Model model, @PathVariable("productId") Integer productId) {

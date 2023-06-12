@@ -6,7 +6,7 @@
 
 				<div
 					class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-					
+
 				</div>
 
 				<div
@@ -38,10 +38,8 @@
 		role="navigation">
 		<div class="container">
 			<ul class="site-menu js-clone-nav d-none d-md-block">
-				<li class="has-children active"><a
-					href="/home"> Home</a></li>
-				<li class="has-children"><a href="">About
-						us</a></li>
+				<li class="has-children"><a href="/home"> Home</a></li>
+				<li class="has-children"><a href="/user/about">About us</a></li>
 				<li><a href="/shop"> Shop</a></li>
 				<li><a href=""> New Arrivals</a></li>
 				<li><a href=""> Contact</a></li>

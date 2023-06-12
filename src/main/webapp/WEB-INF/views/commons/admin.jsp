@@ -27,11 +27,6 @@
 						style="background-color: #0a3d62; color: #dcdde1"> <span>
 							<i class="fa-solid fa-money-check-dollar fs-6 px-1"></i>
 					</span> Brand
-					</a> <a href="#"
-						class="list-group-item list-group-item-action border-0  "
-						style="background-color: #0a3d62; color: #dcdde1"> <span>
-							<i class="fa-solid fa-arrow-down-9-1 fs-6 px-1"></i>
-					</span> Sale off
 					</a> <a href="/admin/orders/index"
 						class="list-group-item list-group-item-action border-0  "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
@@ -41,15 +36,7 @@
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-calendar-check fs-6 px-1"></i></span> Order details
 					</a>
-					<p class="text-secondary fw-bold">Extras</p>
-					<a href="#"
-						class="list-group-item list-group-item-action border-0 "
-						style="background-color: #0a3d62; color: #dcdde1"> <span><i
-							class="fa-solid fa-message fs-6 px-1"></i></span> Feedbacks
-					</a> <a href="#"
-						class="list-group-item list-group-item-action border-0 "
-						style="background-color: #0a3d62; color: #dcdde1"> <span><i
-							class="fa-solid fa-gear fs-6 px-1"></i></span> Settings
-					</a>
+					
+					
 				</div>
 			</div>

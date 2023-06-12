@@ -47,11 +47,13 @@
 											id="dropdownCategory" data-toggle="dropdown"
 											aria-haspopup="true" aria-expanded="false">Category</button>
 										<div class="dropdown-menu" aria-labelledby="dropdownCategory">
-											<a class="dropdown-item" href="/shop">All Products</a> <a
-												class="dropdown-item" href="#">Clothing</a> <a
-												class="dropdown-item" href="#">Footwear</a> <a
-												class="dropdown-item" href="#">Accessories</a>
+											<a class="dropdown-item" href="/shop">All Products</a>
+											<c:forEach var="category" items="${categories}">
+												<a class="dropdown-item"
+													href="/shop/products?category=${category.id}">${category.name}</a>
+											</c:forEach>
 										</div>
+
 									</div>
 									<div class="btn-group">
 										<button type="button"
@@ -108,16 +110,16 @@
 								<div class="site-block-27">
 									<div>
 										<!-- phân trang -->
-										<div class="row mt-5">
-											<ul class="pagination justify-content-center">
-												<c:forEach var="index" begin="0"
-													end="${ products.totalPages - 1 }">
-													<li class="page-item mx-1"><a
-														class="page-link ${ index==page?'bg-black text-white':'' }"
-														href="/shop?page=${ index }">${ index + 1 }</a></li>
-												</c:forEach>
-											</ul>
-										</div>
+
+										<ul class="pagination justify-content-center">
+											<c:forEach var="index" begin="0"
+												end="${ products.totalPages - 1 }">
+												<li class="page-item mx-1"><a
+													class="page-link ${ index==page?'bg-black text-white':'' }"
+													href="/shop?page=${ index }">${ index + 1 }</a></li>
+											</c:forEach>
+										</ul>
+
 
 									</div>
 								</div>
