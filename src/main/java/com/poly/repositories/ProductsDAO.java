@@ -19,7 +19,10 @@ public interface ProductsDAO extends JpaRepository<Products, Integer> {
 	List<Products> findByCategory(Categories category);
 	List<Products> findByCategoryId(Integer categoryId);
 	List<Products> findByPriceBetween(double minPrice, double maxPrice);
-	Page<Products> findAllByNameContaining(String name, Pageable pageable);
+	Page<Products> findByCategory(Categories category, Pageable pageable);
+
+	Page<Products> findByNameContainingOrDescriptionContaining(String name, String description, Pageable pageable);
+
 //	@Query(value = "SELECT * FROM products WHERE Category_Id = 1", nativeQuery = true)
 //	List<Products> findCategory1();
 //

@@ -50,11 +50,12 @@
 											<a class="dropdown-item" href="/shop">All Products</a>
 											<c:forEach var="category" items="${categories}">
 												<a class="dropdown-item"
-													href="/shop/products?category=${category.id}">${category.name}</a>
+													href="/shop?category=${category.id}">${category.name}</a>
+												<!-- Replace categoryId with category -->
 											</c:forEach>
 										</div>
-
 									</div>
+
 									<div class="btn-group">
 										<button type="button"
 											class="btn btn-secondary btn-sm dropdown-toggle"
@@ -110,12 +111,11 @@
 								<div class="site-block-27">
 									<div>
 										<!-- phân trang -->
-
 										<ul class="pagination justify-content-center">
 											<c:forEach var="index" begin="0"
 												end="${ products.totalPages - 1 }">
 												<li class="page-item mx-1"><a
-													class="page-link ${ index==page?'bg-black text-white':'' }"
+													class="page-link ${ index==page?'bg-black text-danger':'' }"
 													href="/shop?page=${ index }">${ index + 1 }</a></li>
 											</c:forEach>
 										</ul>
@@ -137,10 +137,11 @@
 								</c:forEach>
 							</ul>
 						</div>
+
 						<div class="border p-4 rounded mb-4">
-							<form action="" class="site-block-top-search">
+							<form action="/shop" method="get" class="site-block-top-search">
 								<span class="icon icon-search2"></span> <input type="text"
-									name="search" class="form-control border-0"
+									name="searchTerm" class="form-control border-0"
 									placeholder="Search">
 							</form>
 						</div>

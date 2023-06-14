@@ -23,9 +23,7 @@
 			<div class="col-10 px-0">
 					<nav class="navbar navbar-expand-lg shadow-sm"
 					style="background-color: #ffffff">
-<<<<<<< HEAD
 					<%@ include file="/WEB-INF/views/commons/navadmin.jsp"%>
-=======
 					<div class="container-fluid">
 						<button class="navbar-toggler" type="button">
 							
@@ -47,7 +45,6 @@
 							</ul>
 						</div>
 					</div>
->>>>>>> 484079f24053522728b8379cba22cdc4e630e03a
 				</nav>
 				<div class="bg-light p-3">
 					<nav aria-label="breadcrumb">

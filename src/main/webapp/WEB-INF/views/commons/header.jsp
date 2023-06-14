@@ -5,10 +5,6 @@
 			<div class="row align-items-center">
 				<div
 					class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-<<<<<<< HEAD
-
-=======
->>>>>>> 484079f24053522728b8379cba22cdc4e630e03a
 				</div>
 				<div
 					class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
@@ -48,16 +44,11 @@
 		role="navigation">
 		<div class="container">
 			<ul class="site-menu js-clone-nav d-none d-md-block">
-<<<<<<< HEAD
-				<li class="has-children"><a href="/home"> Home</a></li>
-				<li class="has-children"><a href="/user/about">About us</a></li>
-=======
-				<li class="has-children active"><a href="/home"> Home</a></li>
-				<li class="has-children"><a href="">About us</a></li>
->>>>>>> 484079f24053522728b8379cba22cdc4e630e03a
+				<li><a href="/home"> Home</a></li>
+				<li><a href="/user/about">About us</a></li>
 				<li><a href="/shop"> Shop</a></li>
 				<li><a href=""> New Arrivals</a></li>
-				<li><a href=""> Contact</a></li>
+				<li><a href="/user/contact"> Contact</a></li>
 			</ul>
 		</div>
 	</nav>

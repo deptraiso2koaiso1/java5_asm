@@ -45,17 +45,17 @@ public class ShopController {
 	@Autowired
 	private BrandsDAO brandDao;
 
-	@RequestMapping("/products")
-	public String getShopPage(@RequestParam(name = "category", required = false) Integer categoryId, Model model) {
-		List<Products> products;
-		if (categoryId == null) {
-			products = productDao.findAll();
-		} else {
-			products = productDao.findByCategoryId(categoryId);
-		}
-		model.addAttribute("products", products);
-		return "user/shop";
-	}
+//	@RequestMapping("/products")
+//	public String getShopPage(@RequestParam(name = "category", required = false) Integer categoryId, Model model) {
+//		List<Products> products;
+//		if (categoryId == null) {
+//			products = productDao.findAll();
+//		} else {
+//			products = productDao.findByCategoryId(categoryId);
+//		}
+//		model.addAttribute("products", products);
+//		return "user/shop";
+//	}
 
 	@RequestMapping(value = "/detail/{productId}")
 	public String productDetail(Model model, @PathVariable("productId") Integer productId) {
@@ -128,42 +128,49 @@ public class ShopController {
 //	}
 
 	@RequestMapping
-	public String home(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "6") int size,
-			@RequestParam(name = "sortType", defaultValue = "name") String sortType,
-			@RequestParam(name = "sortDir", defaultValue = "asc") String sortDir) {
-		model.addAttribute("page", page);
-		model.addAttribute("sortType", sortType);
-		model.addAttribute("sortDir", sortDir);
+	public String home(Model model, 
+	                   @RequestParam(name = "page", defaultValue = "0") int page,
+	                   @RequestParam(name = "size", defaultValue = "6") int size,
+	                   @RequestParam(name = "sortType", defaultValue = "name") String sortType,
+	                   @RequestParam(name = "sortDir", defaultValue = "asc") String sortDir,
+	                   @RequestParam(name = "searchTerm", required = false) String searchTerm,
+	                   @RequestParam(name = "category", required = false) Integer category) { 
+	    model.addAttribute("page", page);
+	    model.addAttribute("sortType", sortType);
+	    model.addAttribute("sortDir", sortDir);
 
-		// Thiết lập tiêu chí sắp xếp
-		Sort sort;
-		if (sortType.equalsIgnoreCase("name")) {
-			sort = Sort.by("name");
-		} else {
-			sort = Sort.by("price");
-		}
-		if (sortDir.equalsIgnoreCase("desc")) {
-			sort = sort.descending();
-		} else {
-			sort = sort.ascending();
-		}
+	    // Thiết lập tiêu chí sắp xếp
+	    Sort sort;
+	    if (sortType.equalsIgnoreCase("name")) {
+	        sort = Sort.by("name");
+	    } else {
+	        sort = Sort.by("price");
+	    }
+	    if (sortDir.equalsIgnoreCase("desc")) {
+	        sort = sort.descending();
+	    } else {
+	        sort = sort.ascending();
+	    }
 
-	
-		Pageable pageable = PageRequest.of(page, size, sort);
+	    // Tạo phân trang và lấy danh sách sản phẩm
+	    Pageable pageable = PageRequest.of(page, size, sort);
+	    Page<Products> products;
 
-	
-		Page<Products> products = productDao.findAll(pageable);
+	    if (searchTerm != null && !searchTerm.isEmpty()) {
+	        products = productDao.findByNameContainingOrDescriptionContaining(searchTerm, searchTerm, pageable);
+	    } else if (category != null) {
+	        Categories selectedCategory = categoryDao.getOne(category);
+	        products = productDao.findByCategory(selectedCategory, pageable); 
+	    } else {
+	        products = productDao.findAll(pageable);
+	    }
+	    // Truyền các thông tin cần thiết vào Model
+	    model.addAttribute("products", products);
+	    model.addAttribute("categories", categoryDao.findAll());
+	    model.addAttribute("brands", brandDao.findAll());
+	    model.addAttribute("count", cartService.getCount());
 
-
-		model.addAttribute("products", products);
-		model.addAttribute("categories", categoryDao.findAll());
-		model.addAttribute("brands", brandDao.findAll());
-
-
-		model.addAttribute("count", cartService.getCount());
-
-		return "user/shop";
+	    return "user/shop";
 	}
 
 }

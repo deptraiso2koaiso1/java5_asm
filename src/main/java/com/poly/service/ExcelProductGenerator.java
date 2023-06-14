@@ -64,26 +64,27 @@ public class ExcelProductGenerator {
 	}
 
 	private void write() {
-		int rowCount = 1;
+	    int rowCount = 1;
 
-		CellStyle style = workbook.createCellStyle();
-		XSSFFont font = workbook.createFont();
-		font.setFontHeight(14);
-		style.setFont(font);
+	    CellStyle style = workbook.createCellStyle();
+	    XSSFFont font = workbook.createFont();
+	    font.setFontHeight(14);
+	    style.setFont(font);
 
-		for (Products product : listProducts) {
-			Row row = sheet.createRow(rowCount++);
-			int columnCount = 0;
+	    for (Products product : listProducts) {
+	        Row row = sheet.createRow(rowCount++);
+	        int columnCount = 0;
 
-			createCell(row, columnCount++, product.getId(), style);
-			createCell(row, columnCount++, product.getName(), style);
-			createCell(row, columnCount++, product.getPrice(), style);
-			createCell(row, columnCount++, product.getImage(), style);
-			createCell(row, columnCount++, product.getBrand(), style);
-			createCell(row, columnCount++, product.getDescription(), style);
-			createCell(row, columnCount++, product.getCategory().getId(), style);
-		}
+	        createCell(row, columnCount++, product.getId(), style);
+	        createCell(row, columnCount++, product.getName(), style);
+	        createCell(row, columnCount++, product.getPrice(), style);
+	        createCell(row, columnCount++, product.getImage(), style);
+	        createCell(row, columnCount++, product.getBrand().getName(), style); // Thay đổi ở đây
+	        createCell(row, columnCount++, product.getDescription(), style);
+	        createCell(row, columnCount++, product.getCategory().getId(), style);
+	    }
 	}
+
 
 	public void generate(HttpServletResponse response) throws IOException {
 		writeHeader();

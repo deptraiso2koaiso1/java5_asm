@@ -38,7 +38,7 @@
 												<th class="product-price">Price</th>
 												<th class="product-quantity">Quantity</th>
 												<th class="product-total">Total</th>
-												<th class="product-remove"></th>
+												<th class="product-remove"></th> z
 											</tr>
 										</thead>
 										<tbody>
@@ -48,14 +48,13 @@
 														width="130px" height="130px"></td>
 													<td>${prod.value.product.name}</td>
 													<td>${prod.value.product.price}</td>
-													<td>
-														<form action="/cart/update/${prod.value.product.id}"
-															method="get">
-															<input type="text" name="quantity"
-																value="${prod.value.quantity}" style="width: 30px;">
-															<button class="btn btn-primary btn-sm" type="submit">Update</button>
-														</form>
+													<td><input type="number"
+														value="${prod.value.quantity}"
+														onchange="updateCartItem(${prod.value.product.id}, this.value)">
+
 													</td>
+
+
 													<td>${prod.value.getTotalPrice()}</td>
 													<td><a
 														href="<c:url value = "/cart/remove/${prod.value.product.id}"/>">Remove</a></td>
@@ -87,7 +86,7 @@
 										class="btn btn-primary btn-sm btn-block">Clear Cart</a>
 								</div>
 								<div class="col-md-6">
-									<a type="button" href="/user/shop"
+									<a type="button" href="/shop"
 										class="btn btn-outline-primary btn-sm btn-block">Continue
 										Shopping</a>
 								</div>
@@ -136,27 +135,22 @@
 	<%@ include file="/WEB-INF/views/commons/footer.jsp"%>
 	</div>
 	<script>
-		$(document).ready(function() {
-			// Xử lý sự kiện khi thay đổi giá trị của trường số lượng
-			$('input[name="quantity"]').on('change', function() {
-				var itemId = $(this).data('itemid');
-				var itemPrice = $(this).data('itemprice');
-				var quantity = $(this).val();
-				var total = itemPrice * quantity;
+	function updateCartItem(productId, newQuantity) {
+		  $.ajax({
+		    url: "/cart/update/" + productId + "/" + newQuantity,
+		    type: "POST",
+		    success: function(response) {
+		      // update the corresponding row's price on the page
+		      var rowId = "row-" + productId;
+		      $("#" + rowId + " .item-total-price").text(response.itemTotalPrice);
 
-				// Cập nhật giá trị mới cho thẻ hiển thị giá tiền của mặt hàng tương ứng
-				$('#itemTotal-' + itemId).text(total);
+		      // update the total price on the frontend
+		      $("#total-price").text(response.totalPrice);
+		    }
+		  });
+		}
 
-				// Tính tổng số tiền và cập nhật giá trị trong thẻ <label>
-				var sum = 0;
-				$('input[name="quantity"]').each(function() {
-					var price = $(this).data('itemprice');
-					var qty = $(this).val();
-					sum += price * qty;
-				});
-				$('#totalLabel').text(sum);
-			});
-		});
-	</script>
+
+</script>
 </body>
 </html>

@@ -35,6 +35,8 @@ public class ExcelController {
 
 		String headerKey = "Content-Disposition";
 		String headerValue = "attachment; filename=products_" + currentDateTime + ".xlsx";
+		response.setCharacterEncoding("UTF-8");
+
 		response.setHeader(headerKey, headerValue);
 
 		List<Products> listOfProducts = proRepo.findAll();
