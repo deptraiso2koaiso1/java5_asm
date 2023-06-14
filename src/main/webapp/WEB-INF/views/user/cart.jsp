@@ -122,7 +122,7 @@
 									<div class="col-md-12">
 
 										<a type="button" class="btn btn-primary btn-lg py-3 btn-block"
-											href="<c:url value="/cart/checkout"/>">Proceed To
+											href="<c:url value="/cart/getCustomer"/>">Proceed To
 											Checkout</a>
 									</div>
 								</div>

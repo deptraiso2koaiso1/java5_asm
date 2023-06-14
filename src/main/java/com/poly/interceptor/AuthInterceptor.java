@@ -31,6 +31,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 		if (error.length() > 0) { // có lỗi
 			session.set("security-uri", uri);
 			if (error == "Please login!") {
+				request.setAttribute("message", "Please login!");
 				response.sendRedirect("/login?error=" + error);
 			} else {
 				response.sendRedirect("/home?error=" + error);

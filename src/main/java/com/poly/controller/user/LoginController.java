@@ -2,6 +2,10 @@ package com.poly.controller.user;
 
 import java.io.IOException;
 
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -111,7 +115,22 @@ public class LoginController {
 					user.setIs_admin(false);
 					dao.save(user);
 					sessionService.set("user", user);
-					Thread.sleep(3000);
+					try {
+						Email email = new SimpleEmail();
+						email.setHostName("smtp.gmail.com");
+						email.setSmtpPort(587);
+						email.setAuthenticator(
+								new DefaultAuthenticator("hodanhnhan1166@gmail.com", "dwhmxteywggoukiz"));
+						email.setSSLOnConnect(true);
+						email.setFrom("hodanhnhan1166@gmail.com");
+						email.setSubject("Sign in successfully!");
+						email.setMsg(
+								"Shoes shop team alert!\n\nYour account has been created.\n\nThank you,\nThe Shoes Shop Team");
+						email.addTo(user.getEmail());
+						email.send();
+					} catch (EmailException e) {
+						System.out.println("Error sending email: " + e.getMessage());
+					}
 					return "redirect:/home";
 				}
 			} catch (Exception e) {
