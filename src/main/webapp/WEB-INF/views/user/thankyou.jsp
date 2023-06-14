@@ -37,7 +37,6 @@
 								</ul>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -84,4 +83,4 @@
 		<%@ include file="/WEB-INF/views/commons/footer.jsp"%>
 	</div>
 </body>
-</html>
+

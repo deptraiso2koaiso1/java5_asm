@@ -14,7 +14,8 @@ public interface CartService {
 	public HashMap<Integer, CartItem> removeProduct(int id);
 
 	public HashMap<Integer, CartItem> editProduct(int id, int quantity);
-
+	
+//	public HashMap<Integer, CartItem> updateProduct(int productId, int quantity);
 	void clear();
 
 	int getCount();

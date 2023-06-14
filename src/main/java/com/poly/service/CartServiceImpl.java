@@ -12,13 +12,15 @@ import com.poly.entities.Products;
 import com.poly.model.CartItem;
 import com.poly.repositories.ProductsDAO;
 
+import jakarta.servlet.http.HttpSession;
+
 @SessionScope
 @Service
 public class CartServiceImpl implements CartService {
 	@Autowired
 	ProductsDAO dao;
-@Autowired
-SessionService session;
+	@Autowired
+	SessionService session;
 	HashMap<Integer, CartItem> maps = new HashMap<>();
 
 	@Override
@@ -103,6 +105,17 @@ SessionService session;
 	    }
 	    return totalPrice;
 	}
-
-
+//	@Override
+//	public HashMap<Integer, CartItem> updateProduct(int productId, int quantity) {
+//	    HashMap<Integer, CartItem> cartItems = (HashMap<Integer, CartItem>) session.get("cart");
+//	    if (cartItems != null && cartItems.containsKey(productId)){
+//	        CartItem cartItem = cartItems.get(productId);
+//	        cartItem.setQuantity(quantity);
+//	        cartItem.setTotalPrice(cartItem.getProduct().getPrice() * quantity);
+//	    }
+//	    session.set("cart", cartItems);
+//	    session.set("totalPrice", getTotalPrice());
+//	    session.set("totalQuantity", getCount());
+//	    return cartItems;
+//	}
 }

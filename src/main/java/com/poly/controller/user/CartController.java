@@ -15,7 +15,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poly.entities.Customers;
 import com.poly.entities.Users;
@@ -95,18 +98,36 @@ public class CartController {
 //		return "redirect:" + request.getHeader("Referer");
 //	}
 
-//	@RequestMapping("/update/{id}")
-//	public String update(@PathVariable int id, Model model) {
+//	@RequestMapping("/update/{id}/{quantity}")
+//	public String update(@PathVariable int id, @PathVariable int quantity, Model model) {
 //		HashMap<Integer, CartItem> maps = (HashMap<Integer, CartItem>) session.get("cart");
 //		if (maps == null) {
 //			maps = new HashMap<Integer, CartItem>();
 //		}
-//		maps = cart.editProduct(id, param.getInt("quantity", 0));
+//		maps = cart.updateProduct(id, quantity);
 //		session.set("cart", maps);
-//		session.set("totalQuantity", cart.getCount());
 //		session.set("totalPrice", cart.getTotalPrice());
-//		return "user/cart";
+//		session.set("totalQuantity", cart.getCount());
+//		CartItem item = maps.get(id);
+//		model.addAttribute("item", item);
+//		return "redirect:" + request.getHeader("Referer");
 //	}
+	@RequestMapping("/update/{id}/{quantity}")
+	@ResponseBody
+	public HashMap<Integer, CartItem> update(@PathVariable int id, @PathVariable int quantity) {
+	  HashMap<Integer, CartItem> maps = (HashMap<Integer, CartItem>) session.get("cart");
+	  if (maps == null) {
+	    maps = new HashMap<Integer, CartItem>();
+	  }
+	  maps = cart.editProduct(id, quantity);
+	  session.set("cart", maps);
+	  session.set("totalPrice", cart.getTotalPrice());
+	  session.set("totalQuantity", cart.getCount());
+	  
+	  HashMap<String, Object> response = new HashMap<String, Object>();
+	  response.put("totalPrice", cart.getTotalPrice());
+	  return maps;
+	}
 
 	@RequestMapping("/remove/{id}")
 	public String remove(@PathVariable int id, Model model) {

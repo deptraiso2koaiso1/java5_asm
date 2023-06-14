@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poly.entities.Products;
@@ -29,16 +30,16 @@ public class HomeController {
 		model.addAttribute("count", cartService.getCount());
 		return "user/home";
 	}
-//	@GetMapping("/user/about")
-//	public void about() {
-//	}
+	@GetMapping("/user/about")
+	public void about() {
+	}
 //	@RequestMapping("/user/shop")
 //	public void shop() {
 //	}
-//	@GetMapping("/user/contact")
-//	public void contact() {
-//		
-//	}
+	@GetMapping("/user/contact")
+	public void contact() {
+		
+	}
 //	@GetMapping("/user/shop/shop-single")
 //	public String shopSingle(){
 //		return "user/shop-single";

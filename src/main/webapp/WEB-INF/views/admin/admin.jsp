@@ -23,6 +23,7 @@
 			<div class="col-10 px-0">
 				<nav class="navbar navbar-expand-lg shadow-sm"
 					style="background-color: #ffffff">
+<<<<<<< HEAD
 					<%@ include file="/WEB-INF/views/commons/navadmin.jsp"%>
 					<div class="container-fluid">
 						<button class="navbar-toggler" type="button"></button>
@@ -44,6 +45,11 @@
 							</ul>
 						</div>
 					</div>
+=======
+
+					<%@ include file="/WEB-INF/views/commons/navadmin.jsp"%>
+
+>>>>>>> lam
 				</nav>
 				<div class="row m-0 p-5 g-3">
 					<div class="col-3">

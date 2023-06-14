@@ -44,11 +44,11 @@
 		role="navigation">
 		<div class="container">
 			<ul class="site-menu js-clone-nav d-none d-md-block">
-				<li class=""><a href="/home"> Home</a></li>
-				<li class=""><a href="">About us</a></li>
+				<li><a href="/home"> Home</a></li>
+				<li><a href="/user/about">About us</a></li>
 				<li><a href="/shop"> Shop</a></li>
 				<li><a href=""> New Arrivals</a></li>
-				<li><a href=""> Contact</a></li>
+				<li><a href="/user/contact"> Contact</a></li>
 			</ul>
 		</div>
 	</nav>

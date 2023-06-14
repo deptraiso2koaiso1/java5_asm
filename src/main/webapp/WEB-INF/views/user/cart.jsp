@@ -48,14 +48,13 @@
 														width="130px" height="130px"></td>
 													<td>${prod.value.product.name}</td>
 													<td>${prod.value.product.price}</td>
-													<td>
-														<form action="/cart/update/${prod.value.product.id}"
-															method="get">
-															<input type="text" name="quantity"
-																value="${prod.value.quantity}" style="width: 30px;">
-															<button class="btn btn-primary btn-sm" type="submit">Update</button>
-														</form>
+													<td><input type="number" min="0" max="5"
+														value="${prod.value.quantity}"
+														onchange="updateCartItem(${prod.value.product.id}, this.value)">
+
 													</td>
+
+
 													<td>${prod.value.getTotalPrice()}</td>
 													<td><a
 														href="<c:url value = "/cart/remove/${prod.value.product.id}"/>">Remove</a></td>
@@ -68,7 +67,7 @@
 								<c:otherwise>
 									<h3 class="text-center">
 										Oops! You haven't any product in cart. <a
-											href="<c:url value="/user/shop"> </c:url>">Continue
+											href="<c:url value="/shop"> </c:url>">Continue
 											shopping!</a>
 									</h3>
 								</c:otherwise>
@@ -87,7 +86,7 @@
 										class="btn btn-primary btn-sm btn-block">Clear Cart</a>
 								</div>
 								<div class="col-md-6">
-									<a type="button" href="/user/shop"
+									<a type="button" href="/shop"
 										class="btn btn-outline-primary btn-sm btn-block">Continue
 										Shopping</a>
 								</div>
@@ -101,26 +100,25 @@
 											<h3 class="text-black  text-uppercase">Cart Totals</h3>
 										</div>
 									</div>
-								</div>
-								<div class="row mb-5">
-									<div class="col-md-6">
+								<div class="row">
+									<div class="col-sm-6">
 										<span class="text-black">Item</span>
 									</div>
-									<div class="col-md-6 text-right">
+									<div class="col-sm-6 text-right">
 										<strong class="text-black">${sessionScope.totalQuantity}</strong>
 									</div>
 								</div>
-								<div class="row mb-5 mx-5">
-									<div class="col-md-6">
+								<div class="row">
+									<div class="col-sm-6">
 										<span class="text-black">Order Total</span>
 									</div>
-									<div class="col-md-6 text-right">
+									<div class="col-sm-6 text-right">
 										<strong class="text-black">$${totalPrice}</strong>
 									</div>
 								</div>
+								</div>
 								<div class="row">
 									<div class="col-md-12">
-
 										<a type="button" class="btn btn-primary btn-lg py-3 btn-block"
 											href="<c:url value="/cart/getCustomer"/>">Proceed To
 											Checkout</a>
@@ -128,35 +126,29 @@
 								</div>
 							</div>
 						</div>
+					</c:if>
 				</div>
-				</c:if>
 			</div>
 		</div>
 	</div>
 	<%@ include file="/WEB-INF/views/commons/footer.jsp"%>
-	</div>
 	<script>
-		$(document).ready(function() {
-			// Xử lý sự kiện khi thay đổi giá trị của trường số lượng
-			$('input[name="quantity"]').on('change', function() {
-				var itemId = $(this).data('itemid');
-				var itemPrice = $(this).data('itemprice');
-				var quantity = $(this).val();
-				var total = itemPrice * quantity;
+	function updateCartItem(productId, newQuantity) {
+		  $.ajax({
+		    url: "/cart/update/" + productId + "/" + newQuantity,
+		    type: "POST",
+		    success: function(response) {
+		      // update the corresponding row's price on the page
+		      var rowId = "row-" + productId;
+		      $("#" + rowId + " .item-total-price").text(response.itemTotalPrice);
 
-				// Cập nhật giá trị mới cho thẻ hiển thị giá tiền của mặt hàng tương ứng
-				$('#itemTotal-' + itemId).text(total);
+		      // update the total price on the frontend
+		      $("#total-price").text(response.totalPrice);
+		    }
+		  });
+		}
 
-				// Tính tổng số tiền và cập nhật giá trị trong thẻ <label>
-				var sum = 0;
-				$('input[name="quantity"]').each(function() {
-					var price = $(this).data('itemprice');
-					var qty = $(this).val();
-					sum += price * qty;
-				});
-				$('#totalLabel').text(sum);
-			});
-		});
-	</script>
+
+</script>
 </body>
 </html>

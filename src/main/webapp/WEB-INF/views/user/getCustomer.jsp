@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Login</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,8 +45,8 @@
 						placeholder="Address" />
 				</div>
 				<button type="submit" class="btn btn-danger w-100 my-3 shadow"
-					onclick="return validateForm(); confirmDialog()">Place
-					Order</button>
+					onclick="if (validateForm()) { return confirmDialog(); } else { return false; }">
+					Place Order</button>
 			</form:form>
 		</div>
 	</div>
@@ -62,8 +61,10 @@
 
 			if (name == "" || phone == "" || email == "" || address == "") {
 				alert("Please complete form!");
+				event.preventDefault();
 				return false;
 			}
+			return true;
 		}
 		function confirmDialog() {
 			let result = confirm("Are you sure want to place order?");
