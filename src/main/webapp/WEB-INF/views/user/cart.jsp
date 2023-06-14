@@ -38,7 +38,7 @@
 												<th class="product-price">Price</th>
 												<th class="product-quantity">Quantity</th>
 												<th class="product-total">Total</th>
-												<th class="product-remove"></th> z
+												<th class="product-remove"></th> 
 											</tr>
 										</thead>
 										<tbody>
